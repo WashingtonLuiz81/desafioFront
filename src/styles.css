@@ -1,0 +1,64 @@
+:root {
+  color-scheme: light;
+}
+
+body {
+  min-width: 320px;
+  background: #f6f8fb;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-section {
+  padding: 3rem 0;
+}
+
+.preview-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 1.25rem;
+  padding: 2rem;
+  background: #fff;
+}
+
+.preview-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0d6efd, #6f42c1);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgba(13, 110, 253, 0.35);
+  outline-offset: 2px;
+}
+
+@media (max-width: 767px) {
+  .hero-section {
+    padding: 1.5rem 0;
+  }
+
+  .display-5 {
+    font-size: 2rem;
+  }
+
+  .input-group-lg {
+    flex-direction: column;
+  }
+
+  .input-group-lg .form-control,
+  .input-group-lg .btn {
+    width: 100%;
+    border-radius: 0.5rem !important;
+  }
+
+  .input-group-lg .btn {
+    margin-top: 0.75rem;
+  }
+}
