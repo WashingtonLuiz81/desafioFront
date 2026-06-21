@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 
 import { githubApi } from '../../services';
 import type { GithubRepository } from '../../types';
+import { Loading } from '../../components';
 
 export function RepositoryDetails() {
   const { owner, repo } = useParams();
@@ -39,14 +40,14 @@ export function RepositoryDetails() {
   }, [owner, repo]);
 
   if (isLoading) {
-    return <p className="text-muted">Carregando repositório...</p>;
+    return <Loading message="Carregando repositório..." />;
   }
 
   if (errorMessage) {
     return (
       <section>
-        <Link to={owner ? `/user/${owner}` : '/'} className="btn btn-outline-secondary btn-sm mb-3">
-          Voltar
+        <Link to={`/user/${owner}`} className="back-link mb-4">
+          ← Voltar
         </Link>
 
         <div className="alert alert-danger" role="alert">
@@ -62,11 +63,11 @@ export function RepositoryDetails() {
 
   return (
     <section>
-      <Link to={`/user/${owner}`} className="btn btn-outline-secondary btn-sm mb-3">
-        Voltar
+      <Link to={`/user/${owner}`} className="back-link mb-4">
+        ← Voltar
       </Link>
 
-      <article className="card shadow-sm">
+      <article className="card details-card shadow-sm">
         <div className="card-body">
           <p className="text-muted mb-2">{repository.full_name}</p>
 

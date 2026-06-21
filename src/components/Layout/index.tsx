@@ -3,20 +3,20 @@ import { Link, Outlet } from 'react-router-dom';
 export function Layout() {
   return (
     <div className="app">
-      <header className="border-bottom bg-white">
-        <nav className="navbar navbar-expand container py-3" aria-label="Menu principal">
-          <Link className="navbar-brand fw-bold" to="/">
+      <header className="app-header">
+        <nav className="container app-navbar" aria-label="Menu principal">
+          <Link className="app-logo" to="/">
             GitHub Repo Explorer
           </Link>
         </nav>
       </header>
 
-      <main className="container py-4" id="main-content">
+      <main className="container app-main">
         <Outlet />
       </main>
 
-      <footer className="border-top py-3 mt-auto">
-        <div className="container small text-muted">
+      <footer className="app-footer">
+        <div className="container">
           Dados fornecidos pela API pública do GitHub.
         </div>
       </footer>

@@ -10,7 +10,7 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
   const [owner, repo] = repository.full_name.split('/');
 
   return (
-    <article className="card h-100 shadow-sm">
+    <article className="card h-100 repository-card">
       <div className="card-body">
         <h2 className="h5">
           <Link to={`/repo/${owner}/${repo}`} className="text-decoration-none">

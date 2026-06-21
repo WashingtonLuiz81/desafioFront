@@ -21,16 +21,16 @@ export function Home() {
   }
 
   return (
-    <section className="py-5">
+    <section className="hero-section">
       <div className="row align-items-center g-4">
         <div className="col-lg-7">
           <span className="badge text-bg-primary mb-3">GitHub API</span>
 
-          <h1 className="display-5 fw-bold">
+          <h1 className="hero-title fw-bold">
             Encontre os repositórios mais populares de um usuário GitHub.
           </h1>
 
-          <p className="lead text-muted mt-3">
+          <p className="lead hero-description mt-3">
             Busque um perfil, veja seus dados principais e explore os projetos ordenados por estrelas.
           </p>
 
@@ -74,16 +74,17 @@ export function Home() {
         </div>
 
         <div className="col-lg-5">
-          <div className="card shadow-sm border-0">
-            <div className="card-body p-4">
-              <div className="rounded-circle bg-primary mb-3" style={{ width: 72, height: 72 }} />
+          <div className="hero-card p-4 p-lg-5">
+            <h2 className="h4 mb-4">
+              O que você encontrará
+            </h2>
 
-              <h2 className="h5">Perfil + Repositórios</h2>
-
-              <p className="text-muted mb-0">
-                Uma experiência simples, responsiva e focada nos dados mais importantes.
-              </p>
-            </div>
+            <ul className="list-unstyled mb-0">
+              <li className="mb-3">👤 Perfil completo do usuário</li>
+              <li className="mb-3">⭐ Repositórios mais populares</li>
+              <li className="mb-3">🔎 Ordenação personalizada</li>
+              <li>📱 Experiência responsiva</li>
+            </ul>
           </div>
         </div>
       </div>

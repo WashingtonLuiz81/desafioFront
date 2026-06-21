@@ -62,8 +62,8 @@ export function UserDetails() {
   if (errorMessage) {
     return (
       <section>
-        <Link to="/" className="btn btn-outline-secondary btn-sm mb-3">
-          Voltar
+        <Link to="/" className="back-link mb-4">
+          ← Voltar
         </Link>
 
         <ErrorMessage message={errorMessage} />
@@ -77,18 +77,18 @@ export function UserDetails() {
 
   return (
     <section>
-      <Link to="/" className="btn btn-outline-secondary btn-sm mb-3">
-        Voltar
+      <Link to="/" className="back-link mb-4">
+        ← Voltar
       </Link>
 
-      <div className="card shadow-sm">
+      <div className="card profile-card shadow-sm">
         <div className="card-body d-flex gap-3 flex-column flex-md-row align-items-md-center">
           <img
             src={user.avatar_url}
             alt={`Avatar de ${user.login}`}
             width={96}
             height={96}
-            className="rounded-circle"
+            className="rounded-circle avatar-image"
           />
 
           <div>
