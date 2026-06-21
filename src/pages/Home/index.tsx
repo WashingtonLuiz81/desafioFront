@@ -1,5 +1,5 @@
-import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 type SearchFormData = {
   username: string;
@@ -14,31 +14,27 @@ export function Home() {
     formState: { errors },
   } = useForm<SearchFormData>();
 
-  function onSubmit(data: SearchFormData) {
+  function handleSearchUser(data: SearchFormData) {
     const username = data.username.trim();
-
-    if (!username) {
-      return;
-    }
 
     navigate(`/user/${encodeURIComponent(username)}`);
   }
 
   return (
-    <section className="hero-section">
+    <section className="py-5">
       <div className="row align-items-center g-4">
         <div className="col-lg-7">
           <span className="badge text-bg-primary mb-3">GitHub API</span>
 
           <h1 className="display-5 fw-bold">
-            Encontre os repositórios mais populares de qualquer usuário GitHub.
+            Encontre os repositórios mais populares de um usuário GitHub.
           </h1>
 
           <p className="lead text-muted mt-3">
             Busque um perfil, veja seus dados principais e explore os projetos ordenados por estrelas.
           </p>
 
-          <form className="mt-4" onSubmit={handleSubmit(onSubmit)} noValidate>
+          <form className="mt-4" onSubmit={handleSubmit(handleSearchUser)} noValidate>
             <label htmlFor="username" className="form-label fw-semibold">
               Usuário do GitHub
             </label>
@@ -71,19 +67,23 @@ export function Home() {
               </div>
             ) : (
               <div id="username-help" className="form-text">
-                Tente buscar por: facebook, vercel, microsoft ou torvalds.
+                Tente buscar por: torvalds, facebook, vercel ou microsoft.
               </div>
             )}
           </form>
         </div>
 
         <div className="col-lg-5">
-          <div className="preview-card shadow-sm">
-            <div className="preview-avatar" aria-hidden="true" />
-            <h2 className="h5 mt-3">Perfil + Repositórios</h2>
-            <p className="text-muted mb-0">
-              Uma experiência simples, responsiva e focada nos dados mais importantes.
-            </p>
+          <div className="card shadow-sm border-0">
+            <div className="card-body p-4">
+              <div className="rounded-circle bg-primary mb-3" style={{ width: 72, height: 72 }} />
+
+              <h2 className="h5">Perfil + Repositórios</h2>
+
+              <p className="text-muted mb-0">
+                Uma experiência simples, responsiva e focada nos dados mais importantes.
+              </p>
+            </div>
           </div>
         </div>
       </div>
