@@ -2,10 +2,13 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import { githubApi } from '../../services';
-import type { GithubUser } from '../../types';
+import type { GithubRepository, GithubUser } from '../../types';
+import { RepositoryCard } from '../../components';
 
 export function UserDetails() {
   const { username } = useParams();
+
+  const [repositories, setRepositories] = useState<GithubRepository[]>([]);
 
   const [user, setUser] = useState<GithubUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -20,9 +23,18 @@ export function UserDetails() {
         setErrorMessage('');
 
         const safeUsername = encodeURIComponent(username);
-        const response = await githubApi.get<GithubUser>(`/users/${safeUsername}`);
+        const [userResponse, repositoriesResponse] = await Promise.all([
+          githubApi.get<GithubUser>(`/users/${safeUsername}`),
+          githubApi.get<GithubRepository[]>(`/users/${safeUsername}/repos`),
+        ]);
 
-        setUser(response.data);
+        const sortedRepositories = repositoriesResponse.data.sort(
+          (currentRepository, nextRepository) =>
+            nextRepository.stargazers_count - currentRepository.stargazers_count,
+        );
+
+        setUser(userResponse.data);
+        setRepositories(sortedRepositories);
       } catch {
         setErrorMessage('Não foi possível encontrar esse usuário.');
       } finally {
@@ -90,6 +102,29 @@ export function UserDetails() {
             </p>
           </div>
         </div>
+      </div>
+
+      <div className="mt-4">
+        <div className="d-flex justify-content-between align-items-center mb-3">
+          <h2 className="h4 mb-0">Repositórios</h2>
+          <span className="text-muted small">
+            {repositories.length} encontrados
+          </span>
+        </div>
+
+        {repositories.length === 0 ? (
+          <div className="alert alert-info" role="status">
+            Nenhum repositório público encontrado.
+          </div>
+        ) : (
+          <div className="row g-3">
+            {repositories.map((repository) => (
+              <div className="col-12 col-md-6 col-xl-4" key={repository.id}>
+                <RepositoryCard repository={repository} />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

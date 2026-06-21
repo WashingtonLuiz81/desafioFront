@@ -1,1 +1,1 @@
-export type { GithubUser } from './github';
+export type { GithubRepository, GithubUser } from './github';
