@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import { githubApi } from '../../services';
 import type { GithubRepository, GithubUser } from '../../types';
 import { RepositoryCard } from '../../components';
+
+import { sortRepositories } from '../../utils';
+import type { RepositorySortOption } from '../../utils';
 
 export function UserDetails() {
   const { username } = useParams();
@@ -13,6 +16,13 @@ export function UserDetails() {
   const [user, setUser] = useState<GithubUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
+
+  const [sortOption, setSortOption] =
+  useState<RepositorySortOption>('stars-desc');
+
+  const sortedRepositories = useMemo(() => {
+  return sortRepositories(repositories, sortOption);
+}, [repositories, sortOption]);
 
   useEffect(() => {
     async function fetchUser() {
@@ -105,11 +115,34 @@ export function UserDetails() {
       </div>
 
       <div className="mt-4">
-        <div className="d-flex justify-content-between align-items-center mb-3">
-          <h2 className="h4 mb-0">Repositórios</h2>
-          <span className="text-muted small">
-            {repositories.length} encontrados
-          </span>
+        <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-3">
+          <div>
+            <h2 className="h4 mb-1">Repositórios</h2>
+            <span className="text-muted small">
+              {repositories.length} encontrados
+            </span>
+          </div>
+
+          <div>
+            <label htmlFor="repository-sort" className="form-label small mb-1">
+              Ordenar por
+            </label>
+
+            <select
+              id="repository-sort"
+              className="form-select"
+              value={sortOption}
+              onChange={(event) =>
+                setSortOption(event.target.value as RepositorySortOption)
+              }
+            >
+              <option value="stars-desc">Mais estrelas</option>
+              <option value="stars-asc">Menos estrelas</option>
+              <option value="name-asc">Nome A-Z</option>
+              <option value="name-desc">Nome Z-A</option>
+              <option value="updated-desc">Atualizados recentemente</option>
+            </select>
+          </div>
         </div>
 
         {repositories.length === 0 ? (
@@ -118,7 +151,7 @@ export function UserDetails() {
           </div>
         ) : (
           <div className="row g-3">
-            {repositories.map((repository) => (
+            {sortedRepositories.map((repository) => (
               <div className="col-12 col-md-6 col-xl-4" key={repository.id}>
                 <RepositoryCard repository={repository} />
               </div>
