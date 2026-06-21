@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 
 import { githubApi } from '../../services';
 import type { GithubRepository, GithubUser } from '../../types';
-import { RepositoryCard } from '../../components';
+import { RepositoryCard, Loading, ErrorMessage } from '../../components';
 
 import { sortRepositories } from '../../utils';
 import type { RepositorySortOption } from '../../utils';
@@ -56,7 +56,7 @@ export function UserDetails() {
   }, [username]);
 
   if (isLoading) {
-    return <p>Carregando usuário...</p>;
+     return <Loading message="Carregando usuário..." />;
   }
 
   if (errorMessage) {
@@ -66,9 +66,7 @@ export function UserDetails() {
           Voltar
         </Link>
 
-        <div className="alert alert-danger" role="alert">
-          {errorMessage}
-        </div>
+        <ErrorMessage message={errorMessage} />
       </section>
     );
   }
