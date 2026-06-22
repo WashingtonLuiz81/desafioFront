@@ -22,8 +22,8 @@ export function Home() {
 
   return (
     <section className="hero-section">
-      <div className="row justify-content-center">
-        <div className="col-12 col-lg-9 col-xl-8">
+      <div className="row">
+        <div className="col-12 col-xl-8">
           <span className="badge text-bg-primary mb-3">
             GitHub API
           </span>

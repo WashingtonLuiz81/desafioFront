@@ -57,16 +57,16 @@ body {
 }
 
 .hero-section {
-  min-height: calc(100vh - 170px);
+  min-height: calc(100vh - 240px);
   display: flex;
   align-items: center;
 }
 
 .hero-title {
   max-width: 900px;
-  font-size: clamp(2.2rem, 5vw, 4.25rem);
+  font-size: clamp(2rem, 4vw, 3.8rem);
   line-height: 1.08;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.05em;
 }
 
 .hero-description {
