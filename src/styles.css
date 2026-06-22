@@ -63,22 +63,15 @@ body {
 }
 
 .hero-title {
-  max-width: 760px;
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  line-height: 1.05;
+  max-width: 900px;
+  font-size: clamp(2.2rem, 5vw, 4.25rem);
+  line-height: 1.08;
   letter-spacing: -0.06em;
 }
 
 .hero-description {
-  max-width: 780px;
+  max-width: 760px;
   color: #6b7280;
-}
-
-.hero-card {
-  border: 1px solid #e5e7eb;
-  border-radius: 1.25rem;
-  background: #ffffff;
-  box-shadow: 0 1rem 2.5rem rgba(15, 23, 42, 0.06);
 }
 
 .profile-card,
@@ -112,13 +105,22 @@ body {
   }
 
   .app-main {
-    padding-top: 1.5rem;
+    padding-top: 2rem;
     padding-bottom: 2rem;
   }
 
   .hero-section {
     min-height: auto;
     padding-top: 1rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 10vw, 3rem);
+    line-height: 1.1;
+  }
+
+  .hero-description {
+    font-size: 1rem;
   }
 
   .input-group-lg {
