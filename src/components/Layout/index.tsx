@@ -6,7 +6,7 @@ export function Layout() {
       <header className="app-header">
         <nav className="container app-navbar" aria-label="Menu principal">
           <Link className="app-logo" to="/">
-            GitHub Repo Explorer
+            Explorador de Repositórios
           </Link>
         </nav>
       </header>
