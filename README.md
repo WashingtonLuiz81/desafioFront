@@ -1,47 +1,152 @@
-# Desafio Front-End da Desbravador Software
+# Explorador de Repositórios
 
-**Proposta:**  
-Implementar uma aplicação client-side, que consulte a API do GitHub e mostre os repositórios mais populares de um determinado usuário. Esta aplicação deve funcionar nos navegadores mais recentes do mercado.
+Aplicação desenvolvida para o desafio técnico Front-End da Desbravador Software.
 
-**API**: [https://developer.github.com/v3/](https://developer.github.com/v3/)
+O projeto consome a API pública do GitHub para permitir a busca de usuários, visualização de informações do perfil e exploração dos seus repositórios públicos.
 
-### **Requisitos técnicos** ###
-* **Preferencialmente não utilizar frameworks** Vue, Angular, etc.
-* * Utilizar React não será eliminatório
-* É obrigatório o uso de rotas.
-* Pode usar jquery ou Fetch API, porém **axios** é mais legal.
-* O layout deve ser responsivo, seguindo os padrões Bootstrap.
+## Demonstração
 
-### **Requisitos de negócio** ###
+A aplicação está disponível em:
 
-* Eu, como usuário, desejo **buscar** por um usuário do GitHub;
-* Eu, como usuário, desejo **ver os detalhes do usuário** buscado (número de seguidores, número de seguidos, imagem do avatar, e-mail e bio);
-* Eu, como usuário, desejo **ver a listagem dos repositórios** desse usuário que foi buscado, ordenados pelo número decrescente de estrelas;
-* Eu, como usuário, desejo poder **alterar a ordem da listagem** de repositórios;
-* Eu, como usuário, desejo ver uma **página com os detalhes** de um repositório (nome, descrição, ,número de estrelas, linguagem e um link externo para a página do repositório no GitHub), que pode ser clicado na listagem dos repositórios;
+https://desafio-front-lime-phi.vercel.app/
 
-### **Critérios de Avaliação** ###
+## Tecnologias Utilizadas
 
-* **Organização do projeto**: Avalia a estrutura do projeto, documentação e uso de controle de versão;
-* **Inovação tecnológica**: Avalia o uso de tecnologias mais recentes, como novas características ES6 da linguagem;
-* **Coerência**: Avalia se os requisitos foram atendidos;
-* **Boas práticas**: Avalia se o projeto segue boas práticas de desenvolvimento, incluindo segurança e otimização;
+- React
+- TypeScript
+- Vite
+- React Router DOM
+- Axios
+- React Hook Form
+- Bootstrap 5
+- Vitest
 
+## Funcionalidades
 
-### **Observação** ###
-A performance e a adequação dos recursos serão considerados durante o processo de avaliação. Alem disso, a avaliação ocorrerá em todos os componentes do projeto (JavaScript, HTML e CSS).
+### Busca de usuários
 
-As APIs a serem consumidas são:
-* Detalhes de um usuário: [https://api.github.com/users/{username}](https://api.github.com/users/{username})
-* Repositórios de um usuário: [https://api.github.com/users/{username}/repos](https://api.github.com/users/{username}/repos)
-* Detalhes de um repositório: [https://api.github.com/repos/{full_name}](https://api.github.com/repos/{full_name})
+Permite pesquisar qualquer usuário público do GitHub através do username.
 
-### **Processo de submissão** ###
+### Detalhes do usuário
 
-O desafio deve ser entregue pelo [GitHub](http://github.com/), com README de instalação, start do projeto e visualização da demo.
+Exibe:
 
-A aplicação deve estar hospedada (bônus) ([Heroku](https://www.heroku.com/), [Firebase](https://www.firebase.com/), [Plunker](https://plnkr.co/), [Surge](http://surge.sh/), etc) As URLs deve ser enviada por email.
+- Avatar
+- Nome
+- Login
+- Bio
+- E-mail
+- Quantidade de seguidores
+- Quantidade de usuários seguidos
 
-Qualquer dúvida em relação ao desafio, responderemos por e-mail.
+### Repositórios
 
-Bom trabalho!
+Lista os repositórios públicos do usuário ordenados inicialmente por quantidade de estrelas em ordem decrescente.
+
+### Ordenação
+
+Permite alterar a ordenação dos repositórios por:
+
+- Mais estrelas
+- Menos estrelas
+- Nome A-Z
+- Nome Z-A
+- Atualizados recentemente
+
+### Detalhes do repositório
+
+Exibe:
+
+- Nome
+- Descrição
+- Quantidade de estrelas
+- Linguagem principal
+- Data da última atualização
+- Link externo para o repositório no GitHub
+
+## Estrutura do Projeto
+
+```txt
+src/
+├─ components/
+├─ pages/
+├─ routes/
+├─ services/
+├─ types/
+├─ utils/
+├─ App.tsx
+└─ main.tsx
+```
+
+## Instalação
+
+Clone o projeto:
+
+```bash
+git clone <url-do-repositorio>
+```
+
+Acesse a pasta do projeto:
+
+```bash
+cd nome-do-projeto
+```
+
+Instale as dependências:
+
+```bash
+npm install
+```
+
+Execute o projeto em ambiente de desenvolvimento:
+
+```bash
+npm run dev
+```
+
+## Scripts Disponíveis
+
+Executar ambiente de desenvolvimento:
+
+```bash
+npm run dev
+```
+
+Gerar build de produção:
+
+```bash
+npm run build
+```
+
+Executar lint:
+
+```bash
+npm run lint
+```
+
+Executar testes:
+
+```bash
+npm run test
+```
+
+## Testes
+
+Foram implementados testes unitários para validar a lógica de ordenação dos repositórios.
+
+## Melhorias Aplicadas
+
+Além dos requisitos solicitados, foram implementadas algumas melhorias:
+
+- Componentes reutilizáveis para feedback visual
+- Tratamento de erros de requisição
+- Estados de carregamento
+- Layout responsivo
+- Cuidados básicos de acessibilidade
+- Organização modular do código
+- Tipagem com TypeScript
+- Deploy na Vercel
+
+## Autor
+
+Washington Luiz de Souza
