@@ -12,17 +12,21 @@ export function UserDetails() {
   const { username } = useParams();
 
   const [repositories, setRepositories] = useState<GithubRepository[]>([]);
+  const [visibleRepositories, setVisibleRepositories] = useState(6);
 
   const [user, setUser] = useState<GithubUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
 
   const [sortOption, setSortOption] =
-  useState<RepositorySortOption>('stars-desc');
+    useState<RepositorySortOption>('stars-desc');
 
+  
   const sortedRepositories = useMemo(() => {
-  return sortRepositories(repositories, sortOption);
-}, [repositories, sortOption]);
+    return sortRepositories(repositories, sortOption);
+  }, [repositories, sortOption]);
+
+  const repositoriesToShow = sortedRepositories.slice(0, visibleRepositories);
 
   useEffect(() => {
     async function fetchUser() {
@@ -45,6 +49,7 @@ export function UserDetails() {
 
         setUser(userResponse.data);
         setRepositories(sortedRepositories);
+        setVisibleRepositories(6);
       } catch {
         setErrorMessage('Não foi possível encontrar esse usuário.');
       } finally {
@@ -148,13 +153,27 @@ export function UserDetails() {
             Nenhum repositório público encontrado.
           </div>
         ) : (
-          <div className="row g-3">
-            {sortedRepositories.map((repository) => (
-              <div className="col-12 col-md-6 col-xl-4" key={repository.id}>
-                <RepositoryCard repository={repository} />
+          <>
+            <div className="row g-3">
+              {repositoriesToShow.map((repository) => (
+                <div className="col-12 col-md-6 col-xl-4" key={repository.id}>
+                  <RepositoryCard repository={repository} />
+                </div>
+              ))}
+            </div>
+
+            {visibleRepositories < sortedRepositories.length && (
+              <div className="text-center mt-4">
+                <button
+                  type="button"
+                  className="btn btn-outline-primary"
+                  onClick={() => setVisibleRepositories((current) => current + 6)}
+                >
+                  Carregar mais repositórios
+                </button>
               </div>
-            ))}
-          </div>
+            )}
+          </>
         )}
       </div>
     </section>
